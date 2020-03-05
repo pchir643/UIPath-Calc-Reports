@@ -1,0 +1,304 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="System1_CreateYearlyReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_TaxID" Type="InArgument(x:String)" />
+    <x:Property Name="in_Year" Type="InArgument(x:String)" />
+    <x:Property Name="in_ReportsDownloadPath" Type="InArgument(x:String)" />
+    <x:Property Name="out_YearlyReportPath" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>895,3197</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>System1_CreateYearlyReport_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="24">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.Excel</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="21">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="System1_CreateYearlyReport" sap:VirtualizedContainerService.HintSize="951,2993" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable]" Name="dt_YearlyReport" />
+      <Variable x:TypeArguments="x:String" Name="reportFilePath" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="909,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_YearlyReportPath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Path.Combine(Environment.CurrentDirectory, in_ReportsDownloadPath, "Yearly-Report-"+in_Year+"-"+in_TaxID+".xlsx")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe ACME'" sap:VirtualizedContainerService.HintSize="909,2324" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="fbdb1d1e3335b5ff42926789c8e417bf" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Download Monthly Report' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="875,2178" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT  vendorTaxID'" sap:VirtualizedContainerService.HintSize="833,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_TaxID]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="5235c624d565df3a28d5fdcaeb1c5cca" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Download Monthly Report' /&gt;&lt;webctrl tag='INPUT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A'" sap:VirtualizedContainerService.HintSize="833,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition OffsetX="150" OffsetY="18" Position="TopLeft" />
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="d19a6660f209a3fa3d1c1059173ce69b" Selector="&lt;webctrl aaname='{{in_Year}}' parentid='searchForm' tag='A' /&gt;" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="833,1766" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[{&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;, &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;}]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="month" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="797,1632" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="reportNotFound" />
+                      <Variable x:TypeArguments="x:String" Name="put_Month" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="755,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[put_Month]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[month.ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="755,106" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="ce67439840691e6d606b0406cfe15cac" Selector="&lt;webctrl aaname='{{put_Month}}' parentid='searchForm' tag='A' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  buttonDownload'" sap:VirtualizedContainerService.HintSize="755,106" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="8566d9472c21c568786d4960df580e4a" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Download Monthly Report' /&gt;&lt;webctrl id='buttonDownload' tag='BUTTON' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <ui:ImageFound DisplayName="Image Exists 'chrome.exe Chrome'" Found="[reportNotFound]" sap:VirtualizedContainerService.HintSize="755,106" sap2010:WorkflowViewState.IdRef="ImageFound_2">
+                      <ui:ImageFound.Image>
+                        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" InitialScalingFactor="2" Profile="Basic" TargetImageBase64="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" />
+                      </ui:ImageFound.Image>
+                      <ui:ImageFound.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Download Monthly Report' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:ImageFound.Target>
+                    </ui:ImageFound>
+                    <If Condition="[Not reportNotFound]" sap:VirtualizedContainerService.HintSize="755,1002" sap2010:WorkflowViewState.IdRef="If_2">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="376,853" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="sd:DataTable" Name="dt_MonthlyReport" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[reportFilePath]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[Path.Combine(Environment.CurrentDirectory, in_ReportsDownloadPath, "Report-"+in_TaxID+"-"+in_Year+"-"+month.ToString+".csv")]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Into 'Edit'" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SimulateType="True" Text="[reportFilePath]">
+                            <ui:TypeInto.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4bd88ef10d6573b25b723b91869a10da" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Enregistrer sous' /&gt;&lt;wnd aaname='Nom du fichier :' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:TypeInto.Target>
+                          </ui:TypeInto>
+                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="56568a86c31672f0812f5915bae6307a" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Enregistrer sous' /&gt;&lt;wnd ctrlid='1' title='&amp;amp;Enregistrer' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                          </ui:Click>
+                          <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                          <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[dt_MonthlyReport]" Delimitator="Comma" DisplayName="Read CSV" FilePath="[reportFilePath]" sap:VirtualizedContainerService.HintSize="334,155" sap2010:WorkflowViewState.IdRef="ReadCsvFile_2" />
+                          <ui:MergeDataTable Destination="[dt_YearlyReport]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="MergeDataTable_2" MissingSchemaAction="Add" Source="[dt_MonthlyReport]" />
+                          <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[reportFilePath]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="334,117" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="enter" KeyModifiers="None" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+            </ui:ForEach>
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+    <ui:WriteRange AddHeaders="False" DataTable="[dt_YearlyReport]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="909,115" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Sheet1" StartingCell="A1" WorkbookPath="[out_YearlyReportPath]" />
+    <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="476,254" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'ACMESyste Page'" sap:VirtualizedContainerService.HintSize="434,162" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="d7556fa2af4ca78f55ef71fcb5399c3a" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Download Monthly Report' /&gt;">
+        <ui:BrowserScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+          </ActivityAction>
+        </ui:BrowserScope.Body>
+      </ui:BrowserScope>
+    </Sequence>
+  </Sequence>
+</Activity>
